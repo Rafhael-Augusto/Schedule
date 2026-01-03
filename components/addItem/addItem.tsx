@@ -1,0 +1,57 @@
+"use client";
+
+import { useState } from "react";
+
+import { Button } from "../ui/button";
+import FieldComponent from "../field/field";
+
+import { CalendarPlus } from "lucide-react";
+
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../ui/dialog";
+
+export default function AddItemButton() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div>
+      <Button onClick={() => handleClick()} variant="ghost">
+        <CalendarPlus className="size-10" />
+      </Button>
+
+      <Dialog open={isOpen} onOpenChange={(e) => handleClick()}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Agendar manualmente</DialogTitle>
+          </DialogHeader>
+
+          <div>
+            <FieldComponent setOpen={(state) => setIsOpen(state)} />
+          </div>
+
+          <DialogFooter className="sm:justify-end">
+            <DialogDescription className="text-transparent">
+              Adicionar agenda manualmente
+            </DialogDescription>
+            <DialogClose asChild>
+              <Button type="button" variant="secondary">
+                Fechar
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
