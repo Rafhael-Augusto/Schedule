@@ -18,7 +18,7 @@ interface props {
 export default function FieldComponent({ setOpen }: props) {
   const { schedules, addSchedule } = useSchedules();
 
-  const [state, setState] = useState({
+  const [schedule, setSchedule] = useState({
     name: "",
     date: "",
     hour: "",
@@ -29,8 +29,8 @@ export default function FieldComponent({ setOpen }: props) {
 
     const checkAvailable = () => {
       const check = schedules
-        .filter((schedule) => schedule.date === state.date)
-        .some((schedule) => schedule.hour === state.hour);
+        .filter((currentSchedule) => currentSchedule.date === schedule.date)
+        .some((currentSchedule) => currentSchedule.hour === schedule.hour);
 
       if (check) return true;
 
@@ -43,7 +43,7 @@ export default function FieldComponent({ setOpen }: props) {
     }
 
     const uniqueId = crypto.randomUUID();
-    const newSchedule = { ...state, id: uniqueId };
+    const newSchedule = { ...schedule, id: uniqueId };
 
     addSchedule(newSchedule);
     setOpen(false);
@@ -53,7 +53,7 @@ export default function FieldComponent({ setOpen }: props) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    setState((prev) => ({ ...prev, [name]: value }));
+    setSchedule((prev) => ({ ...prev, [name]: value }));
   };
 
   const dateRef = useMask({
@@ -83,33 +83,35 @@ export default function FieldComponent({ setOpen }: props) {
                 <Input
                   required
                   name="name"
-                  value={state.name}
+                  value={schedule.name}
                   onChange={(e) => handleChange(e)}
                   id="client-name"
                 />
               </Field>
-              <Field>
-                <FieldLabel htmlFor="date">Data</FieldLabel>
-                <Input
-                  required
-                  name="date"
-                  value={state.date}
-                  onChange={(e) => handleChange(e)}
-                  id="date"
-                  ref={dateRef}
-                />
-              </Field>
-              <Field>
-                <FieldLabel htmlFor="hour">Hora</FieldLabel>
-                <Input
-                  required
-                  name="hour"
-                  value={state.hour}
-                  onChange={(e) => handleChange(e)}
-                  id="hour"
-                  ref={hourRef}
-                />
-              </Field>
+              <div className="flex gap-8">
+                <Field>
+                  <FieldLabel htmlFor="date">Data</FieldLabel>
+                  <Input
+                    required
+                    name="date"
+                    value={schedule.date}
+                    onChange={(e) => handleChange(e)}
+                    id="date"
+                    ref={dateRef}
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor="hour">Hora</FieldLabel>
+                  <Input
+                    required
+                    name="hour"
+                    value={schedule.hour}
+                    onChange={(e) => handleChange(e)}
+                    id="hour"
+                    ref={hourRef}
+                  />
+                </Field>
+              </div>
             </FieldGroup>
           </FieldSet>
 

@@ -10,6 +10,7 @@ import {
   TableRow,
 } from "../ui/table";
 import { useSchedules } from "@/store/useSchedules";
+import EditSchedule from "../editSchedule/editSchedule";
 
 type ScheduleItem = {
   date: string;
@@ -18,22 +19,21 @@ type ScheduleItem = {
   id: string;
 };
 
-type ScheduleData = {
-  schedules: ScheduleItem[];
-  caption?: string;
-};
-
-interface ScheduleProps {
-  data: ScheduleData;
-}
-
-export default function ScheduleTable({ data }: ScheduleProps) {
+export default function ScheduleTable() {
   const { schedules } = useSchedules();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentId, setCurrentId] = useState("");
 
   const [sortedList, setSortedList] = useState<Record<
     string,
     ScheduleItem[]
   > | null>(null);
+
+  const handleClick = (id: string) => {
+    setCurrentId(id);
+    setIsOpen(true);
+  };
 
   useEffect(() => {
     const sortList = (list: ScheduleItem[]) => {
@@ -74,7 +74,11 @@ export default function ScheduleTable({ data }: ScheduleProps) {
               </TableRow>
             </TableHeader>
             {items.map((schedule, index) => (
-              <TableBody key={schedule.id} className="text-center">
+              <TableBody
+                key={schedule.id}
+                onClick={() => handleClick(schedule.id)}
+                className="text-center"
+              >
                 <TableRow
                   className={`${index % 2 !== 0 ? "bg-primary/6" : ""}`}
                 >
@@ -86,6 +90,8 @@ export default function ScheduleTable({ data }: ScheduleProps) {
             ))}
           </Table>
         ))}
+
+      <EditSchedule isOpen={isOpen} setIsOpen={setIsOpen} id={currentId} />
     </div>
   );
 }

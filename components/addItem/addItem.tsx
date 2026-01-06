@@ -37,11 +37,11 @@ export default function AddItemButton() {
           </DialogHeader>
 
           <div>
-            <FieldComponent setOpen={(state) => setIsOpen(state)} />
+            <FieldComponent setOpen={setIsOpen} />
           </div>
 
           <DialogFooter className="sm:justify-end">
-            <DialogDescription className="text-transparent">
+            <DialogDescription className="h-0 text-transparent">
               Adicionar agenda manualmente
             </DialogDescription>
             <DialogClose asChild>
