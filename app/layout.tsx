@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
+
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import Sidebar from "@/components/sidebar/sidebar";
+
+import { Geist, Geist_Mono } from "next/font/google";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +41,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SidebarProvider>
+            <Sidebar />
+            <main className="overflow-hidden">
+              <SidebarTrigger className="scale-150 p-4 justify-end w-[84%]" />
+              {children}
+            </main>
+          </SidebarProvider>
           <Toaster />
         </ThemeProvider>
       </body>

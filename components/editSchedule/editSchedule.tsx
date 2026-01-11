@@ -56,15 +56,10 @@ export default function EditSchedule({ isOpen, setIsOpen, id }: props) {
                 <EditField data={schedule} setIsOpen={setIsOpen} />
               </div>
 
-              <DialogFooter className="sm:justify-end">
-                <DialogDescription className="h-0 text-transparent">
+              <DialogFooter className="sm:justify-end absolute">
+                <DialogDescription className="sr-only">
                   Aditar agendamento
                 </DialogDescription>
-                <DialogClose asChild>
-                  <Button type="button" variant="default">
-                    Salvar
-                  </Button>
-                </DialogClose>
               </DialogFooter>
             </DialogContent>
           </Dialog>

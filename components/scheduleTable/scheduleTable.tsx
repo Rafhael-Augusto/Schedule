@@ -62,7 +62,7 @@ export default function ScheduleTable() {
   }, [schedules]);
 
   return (
-    <div>
+    <div className="w-screen p-4">
       {sortedList &&
         Object.entries(sortedList).map(([date, items]) => (
           <Table key={date} className="mb-4">

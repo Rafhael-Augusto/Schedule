@@ -59,6 +59,7 @@ export default function EditField({ data, setIsOpen }: props) {
 
     if (findCurrentSchedule) {
       updateSchedule(editSchedule);
+      setIsOpen(false);
     }
   };
 
@@ -125,22 +126,24 @@ export default function EditField({ data, setIsOpen }: props) {
           </FieldSet>
 
           <Field>
-            <div className="flex justify-center gap-4">
-              <Button
-                type="button"
-                variant="destructive"
-                onClick={() => handleDelete()}
-              >
-                Deletar
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                className="text-green-400"
-              >
-                Concluido
-              </Button>
-              <Button type="submit" variant="secondary">
+            <div className="flex flex-col gap-4">
+              <div className="flex justify-center gap-4">
+                <Button
+                  type="button"
+                  variant="destructive"
+                  onClick={() => handleDelete()}
+                >
+                  Deletar
+                </Button>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="text-green-400"
+                >
+                  Concluido
+                </Button>
+              </div>
+              <Button type="submit" variant="default">
                 Editar
               </Button>
             </div>

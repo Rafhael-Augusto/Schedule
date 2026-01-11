@@ -13,7 +13,7 @@ type types = {
   addSchedule: (newSchedule: schedule) => void;
   removeSchedule: (removedSchedule: string) => void;
   findSchedule: (id: string) => schedule | undefined;
-  updateSchedule: (updatedSchedule: schedule) => unknown;
+  updateSchedule: (updatedSchedule: schedule) => void;
 };
 
 export const useSchedules = create<types>()(

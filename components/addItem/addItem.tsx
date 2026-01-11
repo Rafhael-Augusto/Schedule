@@ -41,7 +41,7 @@ export default function AddItemButton() {
           </div>
 
           <DialogFooter className="sm:justify-end">
-            <DialogDescription className="h-0 text-transparent">
+            <DialogDescription className="sr-only">
               Adicionar agenda manualmente
             </DialogDescription>
             <DialogClose asChild>

@@ -22,6 +22,7 @@ export default function FieldComponent({ setOpen }: props) {
     name: "",
     date: "",
     hour: "",
+    id: "",
   });
 
   const handleForm = (e: FormEvent<HTMLFormElement>) => {

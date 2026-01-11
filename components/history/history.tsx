@@ -1,4 +1,3 @@
-import Menu from "../menu/menu";
 import {
   Table,
   TableBody,
@@ -58,37 +57,33 @@ export default function History() {
   ];
 
   return (
-    <div>
-      <Menu />
+    <div className="w-screen p-4">
+      {zustand.map((item) => (
+        <div key={item.day}>
+          <Table className="mb-4">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="text-center"> Data</TableHead>
+                <TableHead className="text-center"> Hora</TableHead>
+                <TableHead className="text-center"> Nome</TableHead>
+              </TableRow>
+            </TableHeader>
 
-      <div className="m-8">
-        {zustand.map((item) => (
-          <div key={item.day}>
-            <Table className="mb-4">
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="text-center"> Data</TableHead>
-                  <TableHead className="text-center"> Hora</TableHead>
-                  <TableHead className="text-center"> Nome</TableHead>
+            <TableBody className="text-center">
+              {item.schedules.map((schedule, index) => (
+                <TableRow
+                  key={schedule.hour}
+                  className={`${index % 2 && "bg-primary/6"}`}
+                >
+                  <TableCell>{schedule.date}</TableCell>
+                  <TableCell>{schedule.hour}</TableCell>
+                  <TableCell>{schedule.name}</TableCell>
                 </TableRow>
-              </TableHeader>
-
-              <TableBody className="text-center">
-                {item.schedules.map((schedule, index) => (
-                  <TableRow
-                    key={schedule.hour}
-                    className={`${index % 2 && "bg-primary/6"}`}
-                  >
-                    <TableCell>{schedule.date}</TableCell>
-                    <TableCell>{schedule.hour}</TableCell>
-                    <TableCell>{schedule.name}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        ))}
-      </div>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      ))}
     </div>
   );
 }
