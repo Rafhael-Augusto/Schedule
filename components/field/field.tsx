@@ -1,15 +1,15 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useState } from "react";
+
 import { toast } from "sonner";
-
 import { useMask } from "@react-input/mask";
-
-import { useSchedules } from "@/store/useSchedules";
 
 import { Field, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+
+import { useSchedules } from "@/store/useSchedules";
 
 interface props {
   setOpen: (state: boolean) => void;

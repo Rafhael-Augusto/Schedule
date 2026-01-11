@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import { cn } from "@/lib/utils";
-import { useSchedules } from "@/store/useSchedules";
 
 import { Button } from "../ui/button";
-
 import {
   Dialog,
   DialogClose,
@@ -15,7 +14,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
-
 import {
   Table,
   TableBody,
@@ -24,6 +22,8 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
+
+import { useSchedules } from "@/store/useSchedules";
 
 type schedule = {
   data: {
@@ -35,7 +35,8 @@ type schedule = {
 };
 
 export default function SchedulesPreview({ data }: schedule) {
-  const { schedules } = useSchedules();
+  const { schedules, addSchedule } = useSchedules();
+  const [buttonEnabled, setButtonEnabled] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,8 +44,40 @@ export default function SchedulesPreview({ data }: schedule) {
     setIsOpen(false);
   };
 
+  const handleClick = () => {
+    data.forEach((schedule) => {
+      const adaptedSchedule = {
+        name: schedule.nome,
+        date: schedule.data,
+        hour: schedule.hora,
+        id: schedule.id,
+      };
+
+      addSchedule(adaptedSchedule);
+    });
+  };
+
   useEffect(() => {
     setIsOpen(true);
+
+    data.forEach((schedule) => {
+      const itemExistStore = schedules.find(
+        (item) => item.date === schedule.data && item.hour === schedule.hora
+      );
+
+      const itemExistList = data.find(
+        (item) =>
+          item.data === schedule.data &&
+          item.hora === schedule.hora &&
+          item.id !== schedule.id
+      );
+
+      if (itemExistStore || itemExistList) {
+        setButtonEnabled(false);
+      } else {
+        setButtonEnabled(true);
+      }
+    });
   }, [data]);
 
   return (
@@ -100,7 +133,12 @@ export default function SchedulesPreview({ data }: schedule) {
               Lista de agendamentos criados por arquivo csv
             </DialogDescription>
             <DialogClose asChild>
-              <Button type="button" variant="secondary">
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => handleClick()}
+                disabled={!buttonEnabled}
+              >
                 Continuar
               </Button>
             </DialogClose>

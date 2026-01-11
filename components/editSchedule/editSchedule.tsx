@@ -1,9 +1,6 @@
 "use client";
 
-import { useSchedules } from "@/store/useSchedules";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-
-import { Button } from "../ui/button";
 
 import {
   Dialog,
@@ -14,7 +11,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
+
 import EditField from "../editField/editField";
+
+import { useSchedules } from "@/store/useSchedules";
 
 type props = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;

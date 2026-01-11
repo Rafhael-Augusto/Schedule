@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
+import { cn } from "@/lib/utils";
+
 import {
   Table,
   TableBody,
@@ -9,8 +12,10 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { useSchedules } from "@/store/useSchedules";
+
 import EditSchedule from "../editSchedule/editSchedule";
+
+import { useSchedules } from "@/store/useSchedules";
 
 type ScheduleItem = {
   date: string;
@@ -79,9 +84,7 @@ export default function ScheduleTable() {
                 onClick={() => handleClick(schedule.id)}
                 className="text-center"
               >
-                <TableRow
-                  className={`${index % 2 !== 0 ? "bg-primary/6" : ""}`}
-                >
+                <TableRow className={cn(index % 2 !== 0 ? "bg-primary/6" : "")}>
                   <TableCell>{date}</TableCell>
                   <TableCell>{schedule.hour}</TableCell>
                   <TableCell>{schedule.name}</TableCell>

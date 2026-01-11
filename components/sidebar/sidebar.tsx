@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { CalendarPlus, CalendarSync, FileUp } from "lucide-react";
+
 import {
   Sidebar,
   SidebarContent,
@@ -9,12 +11,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  CalendarClock,
-  CalendarPlus,
-  CalendarSync,
-  FileUp,
-} from "lucide-react";
 
 const items = [
   {
@@ -26,11 +22,6 @@ const items = [
     title: "Agendamentos Fixos",
     goTo: "/fixed-schedules",
     icon: CalendarSync,
-  },
-  {
-    title: "Historico",
-    goTo: "/history",
-    icon: CalendarClock,
   },
   {
     title: "Upload",

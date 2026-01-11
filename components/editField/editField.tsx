@@ -14,6 +14,7 @@ import { useMask } from "@react-input/mask";
 import { Field, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+
 import { useSchedules } from "@/store/useSchedules";
 
 type props = {
@@ -27,7 +28,8 @@ type props = {
 };
 
 export default function EditField({ data, setIsOpen }: props) {
-  const { findSchedule, updateSchedule, removeSchedule } = useSchedules();
+  const { schedules, findSchedule, updateSchedule, removeSchedule } =
+    useSchedules();
 
   const [editSchedule, setEditSchedule] = useState({
     name: "",
@@ -58,7 +60,17 @@ export default function EditField({ data, setIsOpen }: props) {
     const findCurrentSchedule = findSchedule(data.id);
 
     if (findCurrentSchedule) {
-      updateSchedule(editSchedule);
+      schedules.forEach((schedule) => {
+        if (
+          schedule.date === editSchedule.date &&
+          schedule.hour === editSchedule.hour
+        ) {
+          console.log("He's bouncing up my bootie cheecks ");
+        } else {
+          updateSchedule(editSchedule);
+        }
+      });
+
       setIsOpen(false);
     }
   };
@@ -127,22 +139,13 @@ export default function EditField({ data, setIsOpen }: props) {
 
           <Field>
             <div className="flex flex-col gap-4">
-              <div className="flex justify-center gap-4">
-                <Button
-                  type="button"
-                  variant="destructive"
-                  onClick={() => handleDelete()}
-                >
-                  Deletar
-                </Button>
-                <Button
-                  type="button"
-                  variant="secondary"
-                  className="text-green-400"
-                >
-                  Concluido
-                </Button>
-              </div>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => handleDelete()}
+              >
+                Marcar como concluido
+              </Button>
               <Button type="submit" variant="default">
                 Editar
               </Button>

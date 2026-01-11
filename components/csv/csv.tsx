@@ -1,17 +1,11 @@
 "use client";
-
 import { ChangeEvent, useRef, useState } from "react";
 
 import Papa from "papaparse";
-
-import { FileUp } from "lucide-react";
-import { CircleQuestionMark as QuestionMark } from "lucide-react";
+import { CircleQuestionMark as QuestionMark, FileUp } from "lucide-react";
 
 import { AspectRatio } from "../ui/aspect-ratio";
 import { Button } from "../ui/button";
-
-import SchedulesPreview from "../schedulesPreview/schedulesPreview";
-
 import {
   Dialog,
   DialogClose,
@@ -31,6 +25,8 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "../ui/empty";
+
+import SchedulesPreview from "../schedulesPreview/schedulesPreview";
 
 type schedule = {
   data: string;
