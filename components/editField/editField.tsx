@@ -10,6 +10,7 @@ import {
 } from "react";
 
 import { useMask } from "@react-input/mask";
+import { toast } from "sonner";
 
 import { Field, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
 import { Input } from "../ui/input";
@@ -28,8 +29,13 @@ type props = {
 };
 
 export default function EditField({ data, setIsOpen }: props) {
-  const { schedules, findSchedule, updateSchedule, removeSchedule } =
-    useSchedules();
+  const {
+    schedules,
+    findSchedule,
+    updateSchedule,
+    removeSchedule,
+    scheduleExist,
+  } = useSchedules();
 
   const [editSchedule, setEditSchedule] = useState({
     name: "",
@@ -60,18 +66,15 @@ export default function EditField({ data, setIsOpen }: props) {
     const findCurrentSchedule = findSchedule(data.id);
 
     if (findCurrentSchedule) {
-      schedules.forEach((schedule) => {
-        if (
-          schedule.date === editSchedule.date &&
-          schedule.hour === editSchedule.hour
-        ) {
-          console.log("He's bouncing up my bootie cheecks ");
-        } else {
-          updateSchedule(editSchedule);
-        }
-      });
+      const hasShedule = scheduleExist(editSchedule);
 
-      setIsOpen(false);
+      if (hasShedule) {
+        toast.error("Erro: Horario ja marcado");
+        return;
+      } else {
+        updateSchedule(editSchedule);
+        setIsOpen(false);
+      }
     }
   };
 

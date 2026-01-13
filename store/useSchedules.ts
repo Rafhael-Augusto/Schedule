@@ -12,8 +12,9 @@ type types = {
   schedules: schedule[];
   addSchedule: (newSchedule: schedule) => void;
   removeSchedule: (removedSchedule: string) => void;
-  findSchedule: (id: string) => schedule | undefined;
   updateSchedule: (updatedSchedule: schedule) => void;
+  findSchedule: (id: string) => schedule | undefined;
+  scheduleExist: (payload: schedule) => boolean;
 };
 
 export const useSchedules = create<types>()(
@@ -38,6 +39,11 @@ export const useSchedules = create<types>()(
         })),
       findSchedule: (id) =>
         get().schedules.find((schedule) => schedule.id === id),
+      scheduleExist: (payload) =>
+        get().schedules.some(
+          (schedule) =>
+            payload.date === schedule.date && schedule.hour === schedule.hour
+        ),
     }),
     {
       name: "schedules-storage",
