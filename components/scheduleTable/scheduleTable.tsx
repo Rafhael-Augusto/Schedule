@@ -11,9 +11,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from "@/components/ui/table";
 
-import EditSchedule from "../editSchedule/editSchedule";
+import EditSchedule from "@/components/editSchedule/editSchedule";
 
 import { useSchedules } from "@/store/useSchedules";
 

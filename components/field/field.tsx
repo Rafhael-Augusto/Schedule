@@ -5,9 +5,9 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { toast } from "sonner";
 import { useMask } from "@react-input/mask";
 
-import { Field, FieldGroup, FieldLabel, FieldSet } from "../ui/field";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Field, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 import { useSchedules } from "@/store/useSchedules";
 

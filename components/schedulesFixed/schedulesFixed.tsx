@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { cn } from "@/lib/utils";
 
 import {
@@ -10,13 +12,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from "@/components/ui/table";
 
-import AddFixedItem from "../addFixedItem/addFixedItem";
+import AddFixedItem from "@/components/addFixedItem/addFixedItem";
+import EditFixedSchedule from "@/components/editFixedSchedule/editFixedSchedule";
 
 import { useFixedSchedule } from "@/store/useFixedSchedules";
-import EditFixedSchedule from "../editFixedSchedule/editFixedSchedule";
-import { useState } from "react";
 
 const dayMap = {
   sunday: "Domingo",

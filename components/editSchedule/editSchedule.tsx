@@ -4,15 +4,14 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 
-import EditField from "../editField/editField";
+import EditField from "@/components/editField/editField";
 
 import { useSchedules } from "@/store/useSchedules";
 

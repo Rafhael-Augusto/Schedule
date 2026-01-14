@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+import SelectSchedule from "@/components/selectSchedule/selectSchedule";
+
 import { useFixedSchedule } from "@/store/useFixedSchedules";
 import { useSchedules } from "@/store/useSchedules";
-import ScheduleError from "../scheduleError/scheduleError";
 
 type scheduleIds = {
   schedule: string;
@@ -69,6 +70,6 @@ export default function DailyCheck() {
   }, [hydrated]);
 
   return sameSchedules.length > 0 ? (
-    <ScheduleError data={sameSchedules} />
+    <SelectSchedule data={sameSchedules} />
   ) : null;
 }

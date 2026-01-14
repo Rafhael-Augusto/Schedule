@@ -9,13 +9,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 
-import EditField from "../editField/editField";
+import EditFixedField from "@/components/editFixedField/editFixedField";
 
-import { useSchedules } from "@/store/useSchedules";
 import { useFixedSchedule } from "@/store/useFixedSchedules";
-import EditFixedField from "../editFixedField/editFixedField";
 
 type props = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;

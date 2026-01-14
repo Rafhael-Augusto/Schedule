@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { CalendarPlus } from "lucide-react";
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -13,9 +13,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 
-import FieldComponent from "../field/field";
+import FieldComponent from "@/components/field/field";
 
 export default function AddItemButton() {
   const [isOpen, setIsOpen] = useState(false);

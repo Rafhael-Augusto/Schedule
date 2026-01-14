@@ -2,10 +2,11 @@
 import { ChangeEvent, useRef, useState } from "react";
 
 import Papa from "papaparse";
+
 import { CircleQuestionMark as QuestionMark, FileUp } from "lucide-react";
 
-import { AspectRatio } from "../ui/aspect-ratio";
-import { Button } from "../ui/button";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -15,8 +16,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
-
+} from "@/components/ui/dialog";
 import {
   Empty,
   EmptyContent,
@@ -24,9 +24,9 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "../ui/empty";
+} from "@/components/ui/empty";
 
-import SchedulesPreview from "../schedulesPreview/schedulesPreview";
+import SchedulesPreview from "@/components/schedulesPreview/schedulesPreview";
 
 type schedule = {
   data: string;

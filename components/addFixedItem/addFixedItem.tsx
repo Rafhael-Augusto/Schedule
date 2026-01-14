@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -11,9 +11,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 
-import FixedFieldComponent from "../fixedField/fixedField";
+import FixedFieldComponent from "@/components/fixedField/fixedField";
 
 export default function AddFixedItemButton() {
   const [isOpen, setIsOpen] = useState(false);

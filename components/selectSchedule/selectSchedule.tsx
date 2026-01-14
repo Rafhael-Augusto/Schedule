@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -12,7 +12,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 import {
   Table,
   TableBody,
@@ -20,7 +20,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from "@/components/ui/table";
+
 import { useSchedules } from "@/store/useSchedules";
 import { useFixedSchedule } from "@/store/useFixedSchedules";
 
@@ -31,14 +32,7 @@ type props = {
   }[];
 };
 
-type schedule = {
-  name: string;
-  hour: string;
-  date?: string;
-  day?: string;
-};
-
-export default function ScheduleError({ data }: props) {
+export default function SelectSchedule({ data }: props) {
   const { schedules, findSchedule, addSchedule, removeSchedule } =
     useSchedules();
   const { findSchedule: findFixedSchedule } = useFixedSchedule();
