@@ -5,10 +5,10 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import DailyCheck from "@/components/dailyCheck/dailyCheck";
 import Sidebar from "@/components/sidebar/sidebar";
 
 import { Geist, Geist_Mono } from "next/font/google";
-import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +41,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <DailyCheck />
           <SidebarProvider>
             <Sidebar />
             <main className="overflow-hidden">

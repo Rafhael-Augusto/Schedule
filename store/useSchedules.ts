@@ -10,6 +10,7 @@ type schedule = {
 
 type types = {
   schedules: schedule[];
+  hydrated: boolean;
   addSchedule: (newSchedule: schedule) => void;
   removeSchedule: (removedSchedule: string) => void;
   updateSchedule: (updatedSchedule: schedule) => void;
@@ -21,6 +22,7 @@ export const useSchedules = create<types>()(
   persist(
     (set, get) => ({
       schedules: [],
+      hydrated: false,
       addSchedule: (newSchedule) =>
         set((state) => ({ schedules: [...state.schedules, newSchedule] })),
       removeSchedule: (removedSchedule) =>
@@ -42,11 +44,15 @@ export const useSchedules = create<types>()(
       scheduleExist: (payload) =>
         get().schedules.some(
           (schedule) =>
-            payload.date === schedule.date && schedule.hour === schedule.hour
+            payload.date === schedule.date && payload.hour === schedule.hour
         ),
     }),
     {
       name: "schedules-storage",
+      onRehydrateStorage: () => (state) => {
+        state?.hydrated && void 0;
+        state && (state.hydrated = true);
+      },
     }
   )
 );

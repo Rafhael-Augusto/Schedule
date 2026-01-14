@@ -22,6 +22,7 @@ type types = {
   scheduleExist: (schedule: fixedSchedule) => boolean;
   findSchedule: (id: string) => fixedSchedule | undefined;
   updateSchedule: (updatedSchedule: fixedSchedule) => void;
+  todaySchedules: (date: string) => fixedSchedule[];
 };
 
 export const useFixedSchedule = create<types>()(
@@ -48,6 +49,9 @@ export const useFixedSchedule = create<types>()(
               : item
           ),
         })),
+
+      todaySchedules: (date) =>
+        get().schedules.filter((schedule) => schedule.day === date),
     }),
     {
       name: "fixedSchedules-storage",
