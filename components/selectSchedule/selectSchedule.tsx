@@ -117,7 +117,7 @@ export default function SelectSchedule({ data }: props) {
                     onClick={() => handleSelect(schedule.schedule)}
                     className={cn(
                       selectedId.find((item) => item === schedule.schedule) &&
-                        "bg-green-800"
+                        "bg-green-800 hover:bg-green-800"
                     )}
                   >
                     <TableCell>{currentSchedule?.date}</TableCell>
@@ -128,7 +128,7 @@ export default function SelectSchedule({ data }: props) {
                     onClick={() => handleSelect(schedule.fixedSchedule)}
                     className={cn(
                       selectedId.find((item) => item === schedule.fixedSchedule)
-                        ? "bg-green-800"
+                        ? "bg-green-800 hover:bg-green-800"
                         : "bg-primary/6"
                     )}
                   >
