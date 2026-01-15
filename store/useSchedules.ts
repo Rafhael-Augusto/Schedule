@@ -44,7 +44,9 @@ export const useSchedules = create<types>()(
       scheduleExist: (payload) =>
         get().schedules.some(
           (schedule) =>
-            payload.date === schedule.date && payload.hour === schedule.hour
+            payload.date === schedule.date &&
+            payload.hour === schedule.hour &&
+            payload.id !== schedule.id
         ),
     }),
     {
